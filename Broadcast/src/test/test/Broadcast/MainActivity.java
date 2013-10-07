@@ -1,5 +1,6 @@
 package test.test.Broadcast;
 
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,30 +13,18 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity
 {
-  public void call(View paramView)
-  {
-    Intent localIntent = new Intent("android.intent.action.CALL");
-    localIntent.setData(Uri.parse("tel:8447056481"));
-    startActivity(localIntent);
-  }
+	 @Override
+	    protected void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.activity_main);
+}
 
-  protected void onCreate(Bundle paramBundle)
-  {
-    super.onCreate(paramBundle);
-    setContentView(R.layout.activity_main);
-  }
-
-  public class receive extends BroadcastReceiver
-  {
-    public receive()
-    {
-    }
-
-    public void onReceive(Context paramContext, Intent paramIntent)
-    {
-      String str = paramIntent.getStringExtra("android.intent.extra.PHONE_NUMBER");
-      Log.d(receive.class.getSimpleName(), paramIntent.toString() + ", call to: " + str);
-      Toast.makeText(paramContext, "Outgoing call catched: " + str, 1).show();
-    }
-  }
+	 
+	 public void call(View view)
+	  {
+	    Intent localIntent = new Intent("android.intent.action.CALL");
+	    localIntent.setData(Uri.parse("tel:8447056481"));
+	    startActivity(localIntent);
+	  }
+	 
 }

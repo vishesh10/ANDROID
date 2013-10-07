@@ -10,17 +10,15 @@ import android.widget.Toast;
 
 public class receive extends BroadcastReceiver
 {
-  public void call(View paramView, Context paramContext)
-  {
-    Intent localIntent = new Intent("android.intent.action.CALL");
-    localIntent.setData(Uri.parse("tel:8447056481"));
-    paramContext.startActivity(localIntent);
-  }
+ 
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		String phoneNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+		Log.d(receive.class.getSimpleName(), intent.toString() + ", call to: " + phoneNumber);
+		Toast.makeText(context, "Outgoing call catched: " + phoneNumber, Toast.LENGTH_LONG).show();
+		//TODO: Handle outgoing call event here
+	}
 
-  public void onReceive(Context paramContext, Intent paramIntent)
-  {
-    String str = paramIntent.getStringExtra("android.intent.extra.PHONE_NUMBER");
-    Log.d(receive.class.getSimpleName(), paramIntent.toString() + ", call to: " + str);
-    Toast.makeText(paramContext, "Outgoing call catched: " + str, 1).show();
-  }
+
+
 }
